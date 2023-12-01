@@ -1,107 +1,97 @@
-import React, { useState, useEffect } from 'react';
-import PizzaItem from "../PizzaItem/PizzaItem";
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom';
-
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function CustomerInfo() {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const history = useHistory()
+  const history = useHistory();
 
-    const [nameInput, setNameInput] = useState('');
-    const [streetInput, setStreetInput] = useState('');
-    const [cityInput, setCityInput] = useState('');
-    const [zipInput, setZipInput] = useState('');
+  const [nameInput, setNameInput] = useState("");
+  const [streetInput, setStreetInput] = useState("");
+  const [cityInput, setCityInput] = useState("");
+  const [zipInput, setZipInput] = useState("");
 
+  const [selectedOption, setSelectedOption] = useState("");
 
-    const [selectedOption, setSelectedOption] = useState("")
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    dispatch({
+      type: "CREATE_CUSTOMER_INFO",
+      payload: { nameInput, streetInput, cityInput, zipInput, selectedOption },
+    });
 
-        dispatch({
-            type: 'CREATE_CUSTOMER_INFO',
-            payload: { nameInput, streetInput, cityInput, zipInput, selectedOption }
-        })
+    history.push("/checkout");
+  };
 
-        history.push("/checkout")
+  const onValueChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
-    }
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          onChange={(e) => setNameInput(e.target.value)}
+          value={nameInput}
+          type="text"
+          placeholder="Name"
+        />
 
-    const onValueChange = (e) => {
-        setSelectedOption(e.target.value)
-    }
+        <input
+          onChange={(e) => setStreetInput(e.target.value)}
+          value={streetInput}
+          type="text"
+          placeholder="Street Address"
+        />
 
+        <input
+          onChange={(e) => setCityInput(e.target.value)}
+          value={cityInput}
+          type="text"
+          placeholder="City"
+        />
 
+        <input
+          onChange={(e) => setZipInput(e.target.value)}
+          value={zipInput}
+          type="text"
+          placeholder="Zip"
+        />
 
-    return (
-        <div>
+        <br />
 
-            <form onSubmit={handleSubmit}>
+        <label>
+          {" "}
+          delivery
+          <input
+            value="delivery"
+            type="radio"
+            checked={selectedOption === "delivery"}
+            onChange={onValueChange}
+          />
+        </label>
 
-                <input
-                    onChange={(e) => setNameInput(e.target.value)}
-                    value={nameInput}
-                    type='text'
-                    placeholder='Name'
-                />
+        <br />
 
-                <input
-                    onChange={(e) => setStreetInput(e.target.value)}
-                    value={streetInput}
-                    type='text'
-                    placeholder='Street Address'
-                />
+        <label>
+          {" "}
+          pickup
+          <input
+            value="pickup"
+            type="radio"
+            checked={selectedOption === "pickup"}
+            onChange={onValueChange}
+          />
+        </label>
 
-                <input
-                    onChange={(e) => setCityInput(e.target.value)}
-                    value={cityInput}
-                    type='text'
-                    placeholder='City'
-                />
+        <br />
 
-                <input
-                    onChange={(e) => setZipInput(e.target.value)}
-                    value={zipInput}
-                    type='text'
-                    placeholder='Zip'
-                />
-
-                <br />
-
-                <label> delivery
-                    <input
-                        value="delivery"
-                        type='radio'
-
-                        checked={selectedOption === "delivery"}
-                        onChange={onValueChange}
-                    />
-                </label>
-
-                <br />
-
-                <label> pickup
-                    <input
-                        value="pickup"
-                        type='radio'
-
-                        checked={selectedOption === "pickup"}
-                        onChange={onValueChange}
-                    />
-                </label>
-
-                <br />
-                
-                <button type='submit' >Next</button>
-                
-            </form>
-
-            
-
-        </div>
-    )
+        <button type="submit">Next</button>
+      </form>
+    </div>
+  );
 }
 
 export default CustomerInfo;

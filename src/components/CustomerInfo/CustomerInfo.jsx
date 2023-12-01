@@ -64,11 +64,11 @@ function CustomerInfo() {
 
         <label>
           {" "}
-          delivery
+          Delivery
           <input
-            value="delivery"
+            value="Delivery"
             type="radio"
-            checked={selectedOption === "delivery"}
+            checked={selectedOption === "Delivery"}
             onChange={onValueChange}
           />
         </label>
@@ -77,11 +77,11 @@ function CustomerInfo() {
 
         <label>
           {" "}
-          pickup
+          Pickup
           <input
-            value="pickup"
+            value="Pickup"
             type="radio"
-            checked={selectedOption === "pickup"}
+            checked={selectedOption === "Pickup"}
             onChange={onValueChange}
           />
         </label>

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import PizzaItem from "../PizzaItem/PizzaItem";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 function CustomerInfo() {
@@ -64,11 +65,11 @@ function CustomerInfo() {
 
         <label>
           {" "}
-          Delivery
+          delivery
           <input
-            value="Delivery"
+            value="delivery"
             type="radio"
-            checked={selectedOption === "Delivery"}
+            checked={selectedOption === "delivery"}
             onChange={onValueChange}
           />
         </label>
@@ -77,11 +78,11 @@ function CustomerInfo() {
 
         <label>
           {" "}
-          Pickup
+          pickup
           <input
-            value="Pickup"
+            value="pickup"
             type="radio"
-            checked={selectedOption === "Pickup"}
+            checked={selectedOption === "pickup"}
             onChange={onValueChange}
           />
         </label>

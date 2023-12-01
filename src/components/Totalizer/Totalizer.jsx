@@ -1,7 +1,9 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function Totalizer() {
   const cart = useSelector((store) => store.cart);
+
+  const dispatch = useDispatch();
 
   const math = (cart) => {
     let total = 0;
@@ -9,6 +11,12 @@ function Totalizer() {
     for (const item of cart) {
       total += Number(item.price);
     }
+
+    dispatch({
+      type: "SET_THE_TOTAL",
+      payload: total,
+    });
+
     return total;
   };
 

@@ -1,5 +1,5 @@
 import PizzaItem from "../PizzaItem/PizzaItem";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function PizzaList() {
   const pizzaMenu = useSelector((store) => store.pizzaMenu);

@@ -1,13 +1,14 @@
 import axios from "axios";
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PizzaList from "../PizzaList/PizzaList";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { HashRouter as Router, Route } from "react-router-dom";
 import CustomerInfo from "../CustomerInfo/CustomerInfo";
 import Checkout from "../Checkout/Checkout";
 import Totalizer from "../Totalizer/Totalizer";
+import AdminTable from "../AdminTable/AdminTable";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,12 +46,15 @@ function App() {
             </h1>
           </span>
         </header>
+
         <Route exact path="/">
           <h2>
             Pizza is great. Due to supply issues, you only can have one of each
             :D
           </h2>
+
           <PizzaList />
+
           <Link to="/customInfo">
             <button>Next</button>
           </Link>
@@ -62,6 +66,10 @@ function App() {
 
         <Route exact path="/checkout">
           <Checkout />
+        </Route>
+
+        <Route exact path="/admin">
+          <AdminTable />
         </Route>
       </Router>
     </div>
